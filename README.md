@@ -1,201 +1,180 @@
-# API de Gestão para Psicólogos
+# API Gestão de Psicólogos
 
-MVP de uma API REST pensada para apoiar psicólogos no controle de pacientes, organização da agenda e fluxo de confirmação e remarcação de sessões.
+API backend desenvolvida para auxiliar na gestão de atendimentos psicológicos, com foco em cadastro de pacientes, agenda, sessões, confirmações e organização dos atendimentos.
 
-Este projeto nasceu da minha formação em desenvolvimento fullstack JavaScript, do meu interesse por psicologia e da vontade de construir uma ferramenta realmente útil para profissionais da área. A ideia é evoluir essa base para uma solução que reduza ruído operacional no consultório e torne o processo de remarcação mais simples tanto para o psicólogo quanto para o paciente.
+O projeto foi criado como parte do meu portfólio em desenvolvimento backend, aplicando conceitos de arquitetura em camadas, banco de dados relacional, validação de dados, documentação de API e testes automatizados.
 
-## Visão do projeto
+---
 
-O foco deste primeiro MVP é resolver um fluxo muito comum na prática clínica:
+## Tecnologias utilizadas
 
-- cadastro de pacientes
-- definição do horário recorrente de atendimento
-- organização da disponibilidade semanal do psicólogo
-- geração automática de agendamentos futuros
-- confirmação prévia da sessão
-- solicitação de remarcação
-- sugestão de novos horários livres
-- remarcação automática
+![TypeScript](https://img.shields.io/badge/TypeScript-3178C6?style=for-the-badge&logo=typescript&logoColor=white)
+![NestJS](https://img.shields.io/badge/NestJS-E0234E?style=for-the-badge&logo=nestjs&logoColor=white)
+![Prisma](https://img.shields.io/badge/Prisma-2D3748?style=for-the-badge&logo=prisma&logoColor=white)
+![MySQL](https://img.shields.io/badge/MySQL-4479A1?style=for-the-badge&logo=mysql&logoColor=white)
+![Swagger](https://img.shields.io/badge/Swagger-85EA2D?style=for-the-badge&logo=swagger&logoColor=black)
+![Jest](https://img.shields.io/badge/Jest-C21325?style=for-the-badge&logo=jest&logoColor=white)
 
-Hoje a API trabalha com mensageria simulada, mas a arquitetura já foi preparada para futura integração com SMS ou WhatsApp.
+---
 
-## Funcionalidades implementadas
+## Sobre o projeto
 
-- CRUD de pacientes
-- cadastro de horário recorrente do paciente
-- cadastro da disponibilidade semanal do psicólogo
-- cadastro de bloqueios de agenda
-- geração automática de agendamentos futuros
-- envio simulado de confirmação de sessão
-- processamento das respostas `1`, `2` e `3`
-- fluxo de remarcação com busca de horários disponíveis
-- documentação com Swagger
-- testes automatizados para regras principais da API
+A **API Gestão de Psicólogos** é uma aplicação backend voltada para profissionais da Psicologia que desejam organizar seus atendimentos de forma mais estruturada.
 
-## Stack utilizada
+A aplicação permite gerenciar:
 
-- Node.js
-- TypeScript
-- NestJS
-- Prisma ORM
-- MySQL
-- Swagger
-- Jest
+- Psicólogos
+- Pacientes
+- Agendamentos
+- Sessões
+- Confirmações
+- Remarcações
 
-## Estrutura principal
+A proposta é simular uma solução real para organização clínica, considerando regras comuns da rotina profissional, como acompanhamento de sessões, status de atendimento e controle de agenda.
 
-```text
-src/
-  agendamentos/
-  disponibilidade/
-  mensageria/
-  pacientes/
-  prisma/
-  tarefas/
-```
+---
 
-Os módulos foram organizados em português-BR para deixar a leitura mais clara e coerente com o contexto do projeto.
+## Funcionalidades
 
-## Modelagem de domínio
+- Cadastro de psicólogos
+- Cadastro de pacientes
+- Criação de agendamentos
+- Registro de sessões
+- Controle de status dos atendimentos
+- Confirmação de consultas
+- Remarcação de horários
+- Documentação da API com Swagger
+- Testes automatizados com Jest
+- Integração com banco de dados MySQL via Prisma ORM
 
-As entidades principais da aplicação são:
+---
 
-- `Patient`: dados do paciente
-- `RecurringSchedule`: regra semanal de atendimento
-- `Appointment`: sessão concreta gerada pela recorrência
-- `PsychologistAvailability`: disponibilidade semanal do psicólogo
-- `AvailabilityBlock`: bloqueios pontuais da agenda
-- `MessageInteraction`: histórico de mensagens e respostas
+## Arquitetura
 
-## Rotas principais
+O projeto segue uma organização baseada em módulos, utilizando a estrutura do NestJS.
 
-### Saúde
+Principais camadas utilizadas:
 
-- `GET /saude`
+- `Controller`: responsável por receber as requisições HTTP
+- `Service`: responsável pelas regras de negócio
+- `DTO`: responsável pela validação e transporte dos dados
+- `Prisma`: responsável pela comunicação com o banco de dados
+- `Module`: responsável pela organização das dependências
 
-### Pacientes
+---
 
-- `POST /pacientes`
-- `GET /pacientes`
-- `GET /pacientes/:id`
-- `PATCH /pacientes/:id`
-- `DELETE /pacientes/:id`
-
-### Disponibilidade
-
-- `POST /disponibilidade/semanal`
-- `GET /disponibilidade/semanal`
-- `POST /disponibilidade/bloqueios`
-- `GET /disponibilidade/bloqueios`
-
-### Agendamentos
-
-- `POST /agendamentos/gerar`
-- `GET /agendamentos`
-- `GET /agendamentos/resumo`
-- `GET /agendamentos/:id`
-- `POST /agendamentos/confirmacoes/enviar`
-- `POST /agendamentos/:id/respostas`
-- `POST /agendamentos/:id/escolha-remarcacao`
-
-## Como rodar o projeto localmente
-
-### 1. Clone o repositório
+## Estrutura do projeto
 
 ```bash
-git clone <url-do-repositorio>
-cd new-project
+src/
+├── agendamentos/
+├── pacientes/
+├── psicologos/
+├── sessoes/
+├── prisma/
+├── app.module.ts
+└── main.ts
 ```
 
-### 2. Instale as dependências
+---
+
+## Como executar o projeto
+
+### 1. Clonar o repositório
+
+```bash
+git clone https://github.com/KefilweLourenco/api-gestao-psicologos.git
+cd api-gestao-psicologos
+```
+
+### 2. Instalar as dependências
 
 ```bash
 npm install
 ```
 
-### 3. Crie o arquivo `.env`
+### 3. Configurar as variáveis de ambiente
 
-Use o arquivo `.env.example` como base:
+Crie um arquivo `.env` na raiz do projeto com base no arquivo `.env.example`.
+
+Exemplo:
 
 ```env
-DATABASE_URL="mysql://root:password@localhost:3306/psychology_mvp"
-PORT=3000
-APP_TIMEZONE="America/Sao_Paulo"
-APPOINTMENT_GENERATION_WEEKS_AHEAD=6
-RESCHEDULE_SUGGESTION_LIMIT=3
+DATABASE_URL="mysql://usuario:senha@localhost:3306/api_gestao_psicologos"
 ```
 
-### 4. Crie o banco no MySQL
-
-```sql
-CREATE DATABASE psychology_mvp;
-```
-
-### 5. Rode as migrations
+### 4. Executar as migrations do Prisma
 
 ```bash
 npx prisma migrate dev
 ```
 
-### 6. Inicie a aplicação
+### 5. Rodar a aplicação
 
 ```bash
 npm run start:dev
 ```
 
-### 7. Acesse a documentação
-
-```text
-http://localhost:3000/docs
-```
-
-## Como testar
-
-Você pode testar a API de duas formas:
-
-- pelo Swagger
-- pelo Insomnia
-
-Fluxo básico de teste:
-
-1. cadastrar disponibilidade semanal
-2. cadastrar paciente
-3. gerar agendamentos futuros
-4. listar agendamentos
-5. solicitar remarcação com resposta `3`
-6. escolher um novo horário sugerido
-
-## Scripts disponíveis
+A aplicação será executada em:
 
 ```bash
-npm run start:dev
-npm run build
-npm test
-npx prisma migrate dev
-npx prisma studio
+http://localhost:3000
 ```
+
+---
+
+## Documentação da API
+
+A documentação da API pode ser acessada pelo Swagger após iniciar o projeto:
+
+```bash
+http://localhost:3000/api
+```
+
+---
+
+## Testes
+
+Para executar os testes automatizados:
+
+```bash
+npm run test
+```
+
+---
 
 ## Status do projeto
 
-Este projeto está em fase inicial, mas já possui uma base funcional de API para agenda clínica com foco em confirmação e remarcação.
+Projeto em desenvolvimento e evolução contínua.
 
-Próximos passos que pretendo desenvolver:
+Funcionalidades futuras planejadas:
 
-- autenticação de usuários
-- integração real com WhatsApp ou SMS
-- painel web para psicólogos
-- filtros e paginação mais completos
-- melhoria dos retornos padronizados da API
-- preparação para multiusuário
+- Autenticação e autorização
+- Perfil de usuário
+- Controle financeiro dos atendimentos
+- Relatórios clínicos e administrativos
+- Melhorias nos testes automatizados
+- Deploy da aplicação
 
-## Motivação pessoal
+---
 
-Além da formação em desenvolvimento fullstack JavaScript, eu também estudo psicologia. Isso fez com que eu olhasse para esse problema com bastante interesse: quero construir uma ferramenta que faça sentido na prática clínica e que seja útil para profissionais como a minha esposa.
+## Aprendizados
 
-Mais do que um exercício técnico, este projeto representa um começo de produto com propósito real.
+Durante o desenvolvimento deste projeto, aprofundei meus conhecimentos em:
+
+- Desenvolvimento backend com NestJS
+- Organização de APIs REST
+- Modelagem de banco de dados relacional
+- Uso do Prisma ORM
+- Validação de dados com DTOs
+- Documentação com Swagger
+- Testes automatizados com Jest
+- Estruturação de projeto para portfólio
+
+---
 
 ## Autor
 
-Projeto desenvolvido por **Kefilwe Lourenço** como parte do meu portfólio de desenvolvimento fullstack JavaScript, com foco em backend, regras de negócio e construção de soluções úteis para a área da saúde mental.
+Projeto desenvolvido por **Kefilwe Lourenço** como parte do meu portfólio de desenvolvimento fullstack JavaScript durante a formação pela **Generation Brasil**, com foco em backend, regras de negócio e soluções úteis para a área da saúde mental.
 
-Projeto idealizado, validado e evoluído por mim como parte do meu portfólio de desenvolvimento fullstack JavaScript, com apoio de ferramentas de IA no processo de prototipação e refatoração.
+A aplicação foi idealizada, validada e evoluída por mim, com apoio de ferramentas de IA no processo de prototipação, revisão e refatoração.
