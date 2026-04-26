@@ -19,7 +19,22 @@ O projeto foi criado como parte do meu portfólio em desenvolvimento backend, ap
 
 ## Sobre o projeto
 
+<<<<<<< HEAD
 A **API Gestão de Psicólogos** é uma aplicação backend voltada para profissionais da Psicologia que desejam organizar seus atendimentos de forma mais estruturada.
+=======
+- CRUD de pacientes
+- cadastro e login simples do psicólogo para acessar o painel de demonstração
+- cadastro de horário recorrente do paciente
+- cadastro da disponibilidade semanal do psicólogo
+- cadastro de bloqueios de agenda
+- geração automática de agendamentos futuros
+- envio simulado de confirmação de sessão
+- processamento das respostas `1`, `2` e `3`
+- fluxo de remarcação com busca de horários disponíveis
+- interface web de demonstração para apresentar a proposta do produto
+- documentação com Swagger
+- testes automatizados para regras principais da API
+>>>>>>> 6dff3c4 (feat: adiciona painel inicial com login e agenda clinica)
 
 A aplicação permite gerenciar:
 
@@ -49,7 +64,17 @@ A proposta é simular uma solução real para organização clínica, consideran
 
 ---
 
+<<<<<<< HEAD
 ## Arquitetura
+=======
+- `Patient`: dados do paciente
+- `RecurringSchedule`: regra semanal de atendimento
+- `Appointment`: sessão concreta gerada pela recorrência
+- `PsychologistAvailability`: disponibilidade semanal do psicólogo
+- `AvailabilityBlock`: bloqueios pontuais da agenda
+- `MessageInteraction`: histórico de mensagens e respostas
+- `Psychologist`: acesso simples do psicólogo ao painel de demonstração
+>>>>>>> 6dff3c4 (feat: adiciona painel inicial com login e agenda clinica)
 
 O projeto segue uma organização baseada em módulos, utilizando a estrutura do NestJS.
 
@@ -65,7 +90,16 @@ Principais camadas utilizadas:
 
 ## Preview
 
+<<<<<<< HEAD
 <img width="1902" height="1031" alt="image" src="https://github.com/user-attachments/assets/450579c9-5181-4cad-af35-454ad4baa2f1" />
+=======
+### Psicólogos
+
+- `POST /psicologos/cadastrar`
+- `POST /psicologos/entrar`
+
+### Disponibilidade
+>>>>>>> 6dff3c4 (feat: adiciona painel inicial com login e agenda clinica)
 
 
 ## Estrutura do projeto
@@ -120,7 +154,41 @@ npx prisma migrate dev
 npm run start:dev
 ```
 
+<<<<<<< HEAD
 A aplicação será executada em:
+=======
+### 7. Acesse a documentação
+
+```text
+http://localhost:3000/docs
+```
+
+### 8. Acesse a interface de demonstração
+
+```text
+http://localhost:3000
+```
+
+A interface consome as rotas reais da API e foi criada para facilitar a apresentação da proposta do projeto.
+
+## Como testar
+
+Você pode testar a API de duas formas:
+
+- pelo Swagger
+- pelo Insomnia
+
+Fluxo básico de teste:
+
+1. cadastrar disponibilidade semanal
+2. cadastrar paciente
+3. gerar agendamentos futuros
+4. listar agendamentos
+5. solicitar remarcação com resposta `3`
+6. escolher um novo horário sugerido
+
+## Scripts disponíveis
+>>>>>>> 6dff3c4 (feat: adiciona painel inicial com login e agenda clinica)
 
 ```bash
 http://localhost:3000

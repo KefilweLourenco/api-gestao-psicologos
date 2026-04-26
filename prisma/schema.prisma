@@ -126,3 +126,13 @@ model MessageInteraction {
 
   @@index([appointmentId, createdAt])
 }
+
+model Psychologist {
+  id           String   @id @default(cuid())
+  name         String
+  email        String   @unique
+  passwordHash String
+  passwordSalt String
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+}
