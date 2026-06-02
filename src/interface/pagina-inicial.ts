@@ -1,6 +1,7 @@
-export function obterHtmlPaginaInicial() {
-  return `<!doctype html>
-<html lang="pt-BR">
+export function obterHtmlPaginaInicial() { // Exporta uma função que retorna todo o HTML da página inicial da aplicação
+  // Retorna a estrutura HTML completa da interface
+  return `<!doctype html> 
+<html lang="pt-BR"> 
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />

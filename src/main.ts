@@ -1,34 +1,54 @@
-import 'dotenv/config'; // Carrega automanticamente as variáveis do arquivo .env 
-import 'reflect-metadata'; // Habilita metados usados internamente pelo NestJS e decorators 
-import { ValidationPipe } from '@nestjs/common';// Importa o ValidationPipe, usado para validar os dados recebidos pela API 
-import { NestFactory } from '@nestjs/core'; // Importa a fábrica que cria a aplicação NestJS
-import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger'; // Importa recursos para gerar a documentação Swagger da API
-import { AppModule } from './app.module'; // Importa o módulo principal da aplicação
+// Carrega automaticamente as variaveis do arquivo .env
+import 'dotenv/config';
+// Habilita metadados usados internamente pelo NestJS e pelos decorators
+import 'reflect-metadata';
 
-async function bootstrap() { // Função principal responsável por iniciar a aplicação
-  const app = await NestFactory.create(AppModule); // Cria a aplicação NestJS a partir do módulo principal
+// Importa o ValidationPipe, usado para validar os dados recebidos pela API
+import { ValidationPipe } from '@nestjs/common';
+// Importa a fabrica que cria a aplicacao NestJS
+import { NestFactory } from '@nestjs/core';
+// Importa recursos para gerar a documentacao Swagger da API
+import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
 
-  app.useGlobalPipes( // Aplica uma validação global para todas as rotas da aplicação 
-    new ValidationPipe({ // Cria o pipe de validação que vai verificar os DTOs recebidos
-      whitelist: true, // Remove automaticamente campos que não existem no DTO
-      forbidNonWhitelisted: true, // Retorna erro se o usuário enviar campos não permitidos
-      transform: true, // Converte automaticamente os dados para o tipo esperado quando possível
+// Importa o modulo principal da aplicacao
+import { AppModule } from './app.module';
+
+// Funcao principal responsavel por iniciar a aplicacao
+async function bootstrap() {
+  // Cria a aplicacao NestJS a partir do modulo principal
+  const app = await NestFactory.create(AppModule);
+
+  // Aplica uma validacao global para todas as rotas da aplicacao
+  app.useGlobalPipes(
+    // Cria o pipe de validacao que vai verificar os DTOs recebidos
+    new ValidationPipe({
+      // Remove automaticamente campos que nao existem no DTO
+      whitelist: true,
+      // Retorna erro se o usuario enviar campos nao permitidos
+      forbidNonWhitelisted: true,
+      // Converte automaticamente os dados para o tipo esperado quando possivel
+      transform: true,
     }),
-  ); // Finaliza a configuração da validação global
+  );
 
-  const swaggerConfig = new DocumentBuilder() // Inicia a configuração da documentação Swagger 
-    .setTitle('API de Gestao para Psicologos') // Define o título da documentação da API
-    .setDescription( 
+  // Inicia a configuracao da documentacao Swagger
+  const swaggerConfig = new DocumentBuilder()
+    .setTitle('API de Gestao para Psicologos')
+    .setDescription(
       'API MVP para gestao de pacientes, confirmacao de sessoes e remarcacao automatica.',
-    ) // Define a descrição principal da API no Swagger
-    .setVersion('1.0.0') // Define a versão atual da API
-    .build(); // Finaliza a configuração do swagger
+    )
+    .setVersion('1.0.0')
+    .build();
 
-  const swaggerDocument = SwaggerModule.createDocument(app, swaggerConfig); //Gera o dcooumento Swagger com base na aplicação e nas configurações definas
-  SwaggerModule.setup('docs', app, swaggerDocument); //Disponibiliza a documentação Swagger na roda /docs
+  // Gera o documento Swagger com base na aplicacao e nas configuracoes definidas
+  const swaggerDocument = SwaggerModule.createDocument(app, swaggerConfig);
+  // Disponibiliza a documentacao Swagger na rota /docs
+  SwaggerModule.setup('docs', app, swaggerDocument);
 
-  await app.listen(Number(process.env.PORT ?? 3000), '0.0.0.0'); // Inicia o servidor na porta definida no .env ou na 3000 por padrão
-                                                                // O endereço 0.0.0.0 permite acessar a aplicação pela rede local
-} // Fim da função principal de inicialização 
- 
-void bootstrap(); // Executa a função que inicia a aplicação
+  // Inicia o servidor na porta definida no .env ou na 3000 por padrao
+  // O endereco 0.0.0.0 permite acessar a aplicacao pela rede local
+  await app.listen(Number(process.env.PORT ?? 3000), '0.0.0.0');
+}
+
+// Executa a funcao que inicia a aplicacao
+void bootstrap();

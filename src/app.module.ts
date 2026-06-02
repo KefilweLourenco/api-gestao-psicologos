@@ -1,27 +1,45 @@
-import { Module } from '@nestjs/common'; // Importa o decorator Module, usado para definir um módulo no NestJS
-import { ScheduleModule } from '@nestjs/schedule';  // Importa o módulo de agendamento de tarefas autómaticas
-import { AgendamentosModule } from './agendamentos/agendamentos.module'; // Importa o módulo responsável pelas regras e rotas de agendamentos
-import { AppController } from './app.controller'; // Importa o Controller principal da aplicação
-import { AppService } from './app.service'; // Importa o service principal da aplicação
-import { DisponibilidadeModule } from './disponibilidade/disponibilidade.module'; // Importa o módulo responsável pela disponibilidade do psicológo
-import { TarefasModule } from './tarefas/tarefas.module'; // Importa o módulo que executa tarefas automáticas do sistema
-import { MensageriaModule } from './mensageria/mensageria.module'; // Importa o módulo responsável pelo envio e registro de mensagens
-import { PacientesModule } from './pacientes/pacientes.module'; // Importa o módulo responsável pelo CRUD de pacientes
-import { PrismaModule } from './prisma/prisma.module'; // Importa o módulo que centraliza a conexão com o banco via Prisma 
-import { PsicologosModule } from './psicologos/psicologos.module'; // Importa o módulo responsável pelo cadastro e login do psicólogo
+// Importa o decorator Module, usado para definir um modulo no NestJS
+import { Module } from '@nestjs/common';
+// Importa o modulo de agendamento de tarefas automaticas
+import { ScheduleModule } from '@nestjs/schedule';
 
-@Module({ // Define o módulo principal da aplicação
-  imports: [ // Lista os módulos que fazem parte da aplicação
-    ScheduleModule.forRoot(), // Inicializa o sistema de tarefas agendados do NestJS
-    PrismaModule, // Adiciona o módulo de acesso ao banco de dados
-    MensageriaModule, // Módulo de mensageria
-    PsicologosModule,  // Módulo de psicólogos
-    PacientesModule,  // Módulo de pacientes
-    DisponibilidadeModule, // Adiciona módulo de disponibilidade
-    AgendamentosModule,  // Módulo de agendamentos
-    TarefasModule, // Módulo de tarefas
-  ], // Fim da lista de módulos importados
-  controllers: [AppController],  // Registra o controller principal da aplicação
-  providers: [AppService], // Registra o service principal da aplicação
-}) // Finaliza a configuração do módulo principal
-export class AppModule {}  // Exporta a classe do módulo principal da aplicação
+// Importa o modulo responsavel pelas regras e rotas de agendamentos
+import { AgendamentosModule } from './agendamentos/agendamentos.module';
+// Importa o controller principal da aplicacao
+import { AppController } from './app.controller';
+// Importa o service principal da aplicacao
+import { AppService } from './app.service';
+// Importa o modulo responsavel pela disponibilidade do psicologo
+import { DisponibilidadeModule } from './disponibilidade/disponibilidade.module';
+// Importa o modulo que executa tarefas automaticas do sistema
+import { TarefasModule } from './tarefas/tarefas.module';
+// Importa o modulo responsavel pelo envio e registro de mensagens
+import { MensageriaModule } from './mensageria/mensageria.module';
+// Importa o modulo responsavel pelo CRUD de pacientes
+import { PacientesModule } from './pacientes/pacientes.module';
+// Importa o modulo que centraliza a conexao com o banco via Prisma
+import { PrismaModule } from './prisma/prisma.module';
+// Importa o modulo responsavel pelo cadastro e login do psicologo
+import { PsicologosModule } from './psicologos/psicologos.module';
+
+// Define o modulo principal da aplicacao
+@Module({
+  // Lista os modulos que fazem parte da aplicacao
+  imports: [
+    // Inicializa o sistema de tarefas agendadas do NestJS
+    ScheduleModule.forRoot(),
+    PrismaModule,
+    MensageriaModule,
+    PsicologosModule,
+    PacientesModule,
+    DisponibilidadeModule,
+    AgendamentosModule,
+    TarefasModule,
+  ],
+  // Registra o controller principal da aplicacao
+  controllers: [AppController],
+  // Registra o service principal da aplicacao
+  providers: [AppService],
+})
+// Exporta a classe do modulo principal da aplicacao
+export class AppModule {}
