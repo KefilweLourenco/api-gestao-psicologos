@@ -19,9 +19,6 @@ O projeto foi criado como parte do meu portfólio em desenvolvimento backend, ap
 
 ## Sobre o projeto
 
-<<<<<<< HEAD
-A **API Gestão de Psicólogos** é uma aplicação backend voltada para profissionais da Psicologia que desejam organizar seus atendimentos de forma mais estruturada.
-=======
 - CRUD de pacientes
 - cadastro e login simples do psicólogo para acessar o painel de demonstração
 - cadastro de horário recorrente do paciente
@@ -34,7 +31,6 @@ A **API Gestão de Psicólogos** é uma aplicação backend voltada para profiss
 - interface web de demonstração para apresentar a proposta do produto
 - documentação com Swagger
 - testes automatizados para regras principais da API
->>>>>>> 6dff3c4 (feat: adiciona painel inicial com login e agenda clinica)
 
 A aplicação permite gerenciar:
 
@@ -64,9 +60,8 @@ A proposta é simular uma solução real para organização clínica, consideran
 
 ---
 
-<<<<<<< HEAD
 ## Arquitetura
-=======
+
 - `Patient`: dados do paciente
 - `RecurringSchedule`: regra semanal de atendimento
 - `Appointment`: sessão concreta gerada pela recorrência
@@ -74,7 +69,6 @@ A proposta é simular uma solução real para organização clínica, consideran
 - `AvailabilityBlock`: bloqueios pontuais da agenda
 - `MessageInteraction`: histórico de mensagens e respostas
 - `Psychologist`: acesso simples do psicólogo ao painel de demonstração
->>>>>>> 6dff3c4 (feat: adiciona painel inicial com login e agenda clinica)
 
 O projeto segue uma organização baseada em módulos, utilizando a estrutura do NestJS.
 
@@ -90,17 +84,14 @@ Principais camadas utilizadas:
 
 ## Preview
 
-<<<<<<< HEAD
 <img width="1902" height="1031" alt="image" src="https://github.com/user-attachments/assets/450579c9-5181-4cad-af35-454ad4baa2f1" />
-=======
+
 ### Psicólogos
 
 - `POST /psicologos/cadastrar`
 - `POST /psicologos/entrar`
 
 ### Disponibilidade
->>>>>>> 6dff3c4 (feat: adiciona painel inicial com login e agenda clinica)
-
 
 ## Estrutura do projeto
 
@@ -154,9 +145,6 @@ npx prisma migrate dev
 npm run start:dev
 ```
 
-<<<<<<< HEAD
-A aplicação será executada em:
-=======
 ### 7. Acesse a documentação
 
 ```text
@@ -188,12 +176,10 @@ Fluxo básico de teste:
 6. escolher um novo horário sugerido
 
 ## Scripts disponíveis
->>>>>>> 6dff3c4 (feat: adiciona painel inicial com login e agenda clinica)
 
 ```bash
 http://localhost:3000
 ```
-
 ---
 
 ## Documentação da API
