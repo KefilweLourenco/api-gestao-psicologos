@@ -63,6 +63,11 @@ Principais camadas utilizadas:
 
 ---
 
+## Preview
+
+<img width="1902" height="1031" alt="image" src="https://github.com/user-attachments/assets/450579c9-5181-4cad-af35-454ad4baa2f1" />
+
+
 ## Estrutura do projeto
 
 ```bash
